@@ -1,6 +1,7 @@
 package com.phonebook.tests;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateAccountTests extends TestBase {
@@ -8,19 +9,33 @@ public class CreateAccountTests extends TestBase {
 
     @Test
     public void newUserRegistrationPositiveTest(){
-        //click on Login link
-driver.findElement(By.cssSelector("[href='/login']")).click();
+        clickOnLoginLink();
+        fillRegisterLoginForm("test@test.com", "");
+        clickOnRegistrationButton();
+        //verify SignOut button is displayed
+        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
 
     }
 
+    public void clickOnRegistrationButton() {
+        click(By.name("registration"));
+    }
 
-    //enter email
+    public void fillRegisterLoginForm(String mail, String password) {
+        type(By.name("email"), mail);
+        type(By.name("password"), password);
+    }
 
-    //enter password
+    public void clickOnLoginLink() {
+        click(By.cssSelector("[href='/login']"));
+    }
 
-    //click on Registration button
-
-    //verify SignOut button is displayed
-
+    @Test
+    public void existedUserRegistrationNegativeTest(){
+        clickOnLoginLink();
+        fillRegisterLoginForm("", "");
+        clickOnRegistrationButton();
+        Assert.assertTrue(isAlertDisplayed());
+    }
 
 }
