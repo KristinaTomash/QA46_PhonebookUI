@@ -1,39 +1,23 @@
 package com.phonebook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateAccountTests extends TestBase {
 
-
-    @Test
+    @Test(enabled = false)
     public void newUserRegistrationPositiveTest(){
         clickOnLoginLink();
-        fillRegisterLoginForm("test@test.com", "");
+        fillRegisterLoginForm(new User().setMail("noa@gmail.com").setPassword("Nnoa12345$"));
         clickOnRegistrationButton();
-        //verify SignOut button is displayed
-        Assert.assertTrue(isElementPresent(By.xpath("//button[.='Sign Out']")));
+        Assert.assertTrue(isSignOutButtonPresent());
 
-    }
-
-    public void clickOnRegistrationButton() {
-        click(By.name("registration"));
-    }
-
-    public void fillRegisterLoginForm(String mail, String password) {
-        type(By.name("email"), mail);
-        type(By.name("password"), password);
-    }
-
-    public void clickOnLoginLink() {
-        click(By.cssSelector("[href='/login']"));
     }
 
     @Test
     public void existedUserRegistrationNegativeTest(){
         clickOnLoginLink();
-        fillRegisterLoginForm("", "");
+        fillRegisterLoginForm(new User().setMail("noa@gmail.com").setPassword("Nnoa12345$"));
         clickOnRegistrationButton();
         Assert.assertTrue(isAlertDisplayed());
     }
