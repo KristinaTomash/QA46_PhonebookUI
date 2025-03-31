@@ -13,6 +13,10 @@ public class DeleteContactTests extends TestBase{
 
     @BeforeMethod
     public void precondition(){
+        if(!app.getUser().isLoginLinkPresent()){
+            app.getUser().clickOnSignOutButton();
+        }
+
         app.getUser().clickOnLoginLink();
         app.getUser().fillRegisterLoginForm(new User().setMail("noa@gmail.com").setPassword("Nnoa12345$"));
         app.getUser().clickOnLoginButton();
