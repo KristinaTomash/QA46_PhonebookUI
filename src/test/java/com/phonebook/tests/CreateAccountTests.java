@@ -25,6 +25,7 @@ if(!app.getUser().isLoginLinkPresent()){
         app.getUser().clickOnRegistrationButton();
         Assert.assertTrue(app.getUser().isSignOutButtonPresent());
 
+
     }
 
     @Test
@@ -35,6 +36,8 @@ if(!app.getUser().isLoginLinkPresent()){
         softAssert.assertTrue(app.getUser().isAlertDisplayed());
         softAssert.assertTrue(app.getUser().isErrorMessagePresent());
         softAssert.assertAll();
+
     }
+
 
 }
