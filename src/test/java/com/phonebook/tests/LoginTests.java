@@ -1,5 +1,6 @@
 package com.phonebook.tests;
 
+import com.phonebook.data.UserData;
 import com.phonebook.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -24,7 +25,7 @@ public class LoginTests extends TestBase {
      @Test(priority = 2)
     public void loginNegativeWithoutEmailTests(){
          app.getUser().clickOnLoginLink();
-         app.getUser().fillRegisterLoginForm(new User().setPassword("Nnoa12345$"));
+         app.getUser().fillRegisterLoginForm(new User().setPassword(UserData.PASSWORD));
          app.getUser().clickOnLoginButton();
          Assert.assertTrue(app.getUser().isAlertDisplayed());
 

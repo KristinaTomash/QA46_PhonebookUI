@@ -1,5 +1,7 @@
 package com.phonebook.tests;
 
+import com.phonebook.data.ContactData;
+import com.phonebook.data.UserData;
 import com.phonebook.models.Contact;
 import com.phonebook.models.User;
 import org.testng.Assert;
@@ -7,9 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DeleteContactTests extends TestBase{
-    //precondition
-    //login
-    //add
 
     @BeforeMethod
     public void precondition(){
@@ -18,15 +17,15 @@ public class DeleteContactTests extends TestBase{
         }
 
         app.getUser().clickOnLoginLink();
-        app.getUser().fillRegisterLoginForm(new User().setMail("noa@gmail.com").setPassword("Nnoa12345$"));
+        app.getUser().fillRegisterLoginForm(new User().setMail(UserData.EMAIL).setPassword(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
         app.getContact().clickOnAddLink();
-        app.getContact().fillContactForm(new Contact().setName("Karl")
-                .setLastName("Adam")
-                .setPhone("1234567890")
-                .setEmail("karl@gmail.com")
-                .setAddress("Rishon")
-                .setDescription("QA"));
+        app.getContact().fillContactForm(new Contact().setName(ContactData.NAME)
+                .setLastName(ContactData.LAST_NAME)
+                .setPhone(ContactData.PHONE)
+                .setEmail(ContactData.EMAIL)
+                .setAddress(ContactData.ADDRESS)
+                .setDescription(ContactData.DESCRIPTION));
         app.getContact().clickOnSaveButton();
     }
 @Test
