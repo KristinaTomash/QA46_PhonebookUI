@@ -21,6 +21,7 @@ public class DataProviders {
         return list.iterator();
     }
     @DataProvider
+
     public Iterator<Object[]>addNewContactWithCsv() throws IOException {
         List<Object[]>list=new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.csv")));
